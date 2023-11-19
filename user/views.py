@@ -21,7 +21,7 @@ class AdminLoginView(APIView):
         check = user.check_password(password)
 
         if not check:
-            return Response({'message': "Your password is not correct", 'response_code': 201}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': "Your password is not correct", 'response_code': 400}, status=status.HTTP_400_BAD_REQUEST)
 
         if user and check:
            
