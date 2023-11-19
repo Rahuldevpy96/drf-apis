@@ -9,12 +9,10 @@ class AdminLoginView(APIView):
         email = request.data.get('email')
         password = request.data.get('password')
 
-        if email is None or email == '':
-            return Response({'message': 'Email field is required', 'response_code': 400}, status=status.HTTP_400_BAD_REQUEST)
+        if email is None or email == '' or password is None or password == '':
+            return Response({'message': 'Invalid Creds', 'response_code': 400}, status=status.HTTP_400_BAD_REQUEST)
 
-        if password is None or password == '':
-            return Response({'message': 'Password field is required', 'response_code': 400}, status=status.HTTP_400_BAD_REQUEST)
-
+      
         user = User.objects.filter(email=email).first()
 
         if not user:
@@ -23,10 +21,10 @@ class AdminLoginView(APIView):
         check = user.check_password(password)
 
         if not check:
-            return Response({'message': "Your password is not correct", 'response_code': 201}, status=status.HTTP_201_CREATED)
+            return Response({'message': "Your password is not correct", 'response_code': 201}, status=status.HTTP_400_BAD_REQUEST)
 
         if user and check:
-            # Manually create both access and refresh tokens
+           
             refresh = RefreshToken.for_user(user)
             access_token = refresh.access_token
 
