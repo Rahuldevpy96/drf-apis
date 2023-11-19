@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment files
+.env
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# PyInstaller
+__pyinstaller/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# vscode settings
+.vscode/
+
+# Django related files
+*.log
+*.pot
+*.pyc
+local_settings.py
+
+# IDE files
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
