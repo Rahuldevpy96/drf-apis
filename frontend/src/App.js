@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-dom";
 import MainLayout from "./components/Layout/MainLayout";
 // import SignUp from "./Pages/SignUp";
@@ -15,15 +15,22 @@ import Products from "./pages/Products";
 
 
 function App() {
+  const [email, setEmail] = useState(localStorage.getItem("email") || 'default-email');
+
+  function UpdatingEmail(userEmail) {
+    setEmail(userEmail);
+    localStorage.setItem("email", userEmail);
+  }
+
   return (
     <Router>
       <Routes>
         {/* <Route path="/" element={<Login />} /> */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/login"  element={<Login UpdatingEmail ={UpdatingEmail}/>} />
         <Route path="/auth" element={<Loader />} />
         {/* <Route path="signup" element={<SignUp />} /> */}
         <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<MainLayout />}>
+          <Route path="/"  element={<MainLayout email={email}/>}>
             {/* <Route path="/dashboard" element={<Dashboard />} name="dashboard" /> */}
             <Route path="/product" element={<Products />} name="product" />
             {/* <Route path="/user" element={<Users />} /> */}

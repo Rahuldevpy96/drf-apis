@@ -22,7 +22,7 @@ const Products = () => {
                     name: product?.name,
                     description: product?.description,
                     price: product?.price,
-                    stock: product?.stock
+                    stock: product?.stock,
                 }));
                 setData(result);
             }
@@ -39,15 +39,12 @@ const Products = () => {
 
     const sendSelectedProducts = async () => {
         try {
-            const res = await authAxios.post('v1/product/selection/', { product_ids: selectedRowKeys ? selectedRowKeys : [] });
+            const res = await authAxios.post('v1/product/selection/', { product_ids: selectedRowKeys ? selectedRowKeys :[] });
             console.log(res.data);
         } catch (error) {
             console.log(error);
         }
     }
-
-
-
 
     const debounce = (func, delay) => {
         let timer;
@@ -79,7 +76,6 @@ const Products = () => {
         setSelectedRowKeys(selectedRowKeys);
         Cookies.set('selectedProducts', JSON.stringify(selectedRowKeys));
     };
-    console.log(selectedRowKeys)
 
     const rowSelection = {
         selectedRowKeys,
@@ -132,7 +128,7 @@ const Products = () => {
                     onPressEnter={debouncedFetchData}
                     style={{ width: 200, marginBottom: 10 }}
                 />
-                <Button type="primary" onClick={() => sendSelectedProducts}>
+                <Button type="primary" onClick={() => sendSelectedProducts()}>
                     Send Selected Products
                 </Button>
             </div>

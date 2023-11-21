@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-(8*kq$2sg@4m6@sn8%%tcjm^ptct=ww0*0o1cnvygf*!bh$9*@
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = ['https://*.us.aldryn.io']
 
 # Application definition
 
@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'base.urls'
@@ -124,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'staticfiles'
 REACT_BUILD_PATH = os.path.join(REACT_DIR, 'frontend', "deploy-build")
 
 STATICFILES_DIRS = (

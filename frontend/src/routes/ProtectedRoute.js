@@ -24,7 +24,6 @@ const ProtectedRoutes = ({ element }) => {
       }
     );
   }, [isAuthenticated])
-console.log(isAuthenticated);
   return isAuthenticated ? (
     <Outlet/>
   ) : (

@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 
 const { Header, Sider, Content } = Layout;
 
-const MainLayout = () => {
+const MainLayout = ({email}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -40,7 +40,6 @@ const MainLayout = () => {
 
   useEffect(() => {
     const currentPath = location.pathname.split("/")[1];
-    console.log(currentPath)
     setActiveItem(currentPath || "dashboard");
   }, [location.pathname]);
 
@@ -66,7 +65,7 @@ const MainLayout = () => {
         {/* <div className="demo-logo-vertical logo">
           <img src={Logo} alt="Logo" className="logo" />
         </div> */}
-        <div className="side_bar_menu_list">
+        <div className="side_bar_menu_list" style={{bottom: 0, top: 0, position:'fixed !important'}}>
           <div className="sidebar_top">
             <Menu theme="dark" mode="inline" selectedKeys={[activeItem]}>
               {mainMenuItems.map((menuItem) => {
@@ -121,7 +120,7 @@ const MainLayout = () => {
               )
             }
             onClick={() => setToggleBar(!toggleBar)}
-          />
+          /><span style={{fontWeight:'500', color:'white', fontSize:'18px',  paddingLeft: '82%'}}>{email}</span>
           <Topbar />
         </Header>
         <Content

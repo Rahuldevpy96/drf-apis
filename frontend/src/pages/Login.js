@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import TextInput from "../components/InputField/TextInput";
 import PasswordInput from "../components/InputField/PasswordInput";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-function Login() {
+function Login( props ) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,7 +17,8 @@ function Login() {
             const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/v1/user/login/`, { email, password });
             Cookies.set('isAuthenticated', 'true');
             Cookies.set('user', JSON.stringify(res.data?.data));
-            console.log(res.data);
+            Cookies.set('token', res.data.data.access_token);
+            props.UpdatingEmail(email);
             // let idToken = user?.signInUserSession.getIdToken();
             // dispatch(setUser(idToken?.payload));
             navigate("/product");
@@ -44,7 +45,7 @@ function Login() {
                             <Link to="/"></Link>
                             <div className="lang_selector">
                                 <p>
-                                    Don’t have an account? <Link to="/Signup">Sign up!</Link>
+                                    {/* Don’t have an account? <Link to="/Signup">Sign up!</Link> */}
                                 </p>
                             </div>
                         </div>
