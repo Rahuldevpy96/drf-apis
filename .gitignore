@@ -39,3 +39,8 @@ local_settings.py
 *.njsproj
 *.sln
 *.sw?
+
+# React build files
+/build/
+/node_modules/
+.DS_Store
