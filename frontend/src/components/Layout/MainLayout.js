@@ -15,6 +15,8 @@ const MainLayout = ({email}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  
+
   const mainMenuItems = [
     {
       key: "product",
@@ -38,6 +40,7 @@ const MainLayout = ({email}) => {
   const [toggleBar, setToggleBar] = useState(false);
   const [activeItem, setActiveItem] = useState(false);
 
+
   useEffect(() => {
     const currentPath = location.pathname.split("/")[1];
     setActiveItem(currentPath || "dashboard");
@@ -60,12 +63,11 @@ const MainLayout = ({email}) => {
       <Sider
         trigger={null}
         className={toggleBar ? "hide_side_navbar" : "side_navbar"}
-        style={{bottom: 0, top: 0}}
       >
         {/* <div className="demo-logo-vertical logo">
           <img src={Logo} alt="Logo" className="logo" />
         </div> */}
-        <div className="side_bar_menu_list" style={{bottom: 0, top: 0, position:'fixed !important'}}>
+        <div className="side_bar_menu_list" style={{bottom: 0, top: 0}}>
           <div className="sidebar_top">
             <Menu theme="dark" mode="inline" selectedKeys={[activeItem]}>
               {mainMenuItems.map((menuItem) => {
@@ -101,7 +103,7 @@ const MainLayout = ({email}) => {
           </div>
         </div>
       </Sider>
-      <Layout className={toggleBar ? "hide_body_layout" : "body_layout"}>
+      <Layout className={"body_layout"}>
         <Header
           className="fixed-header"
           style={{
@@ -119,16 +121,21 @@ const MainLayout = ({email}) => {
                 <BiMenu className="icons" />
               )
             }
-            onClick={() => setToggleBar(!toggleBar)}
-          /><span style={{fontWeight:'500', color:'white', fontSize:'18px',  paddingLeft: '82%'}}>{email}</span>
+            onClick={(e) => {
+                setToggleBar(!toggleBar)
+            }}
+          />
           <Topbar />
+          <span className="email-profile">{email}</span>
         </Header>
         <Content
-          // className="body_content"
+          className="body_content"
           style={{
             // margin: "24px 24px",
             padding: 24,
             minHeight: 100,
+            overflow: 'auto',
+            minWidth: 300
           }}
         >
           <Outlet />

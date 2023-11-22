@@ -23,6 +23,7 @@ const Products = () => {
                     description: product?.description,
                     price: product?.price,
                     stock: product?.stock,
+                    selected_by_user:product?.selected_by_user
                 }));
                 setData(result);
             }
@@ -35,7 +36,7 @@ const Products = () => {
 
     useEffect(() => {
         fetchData();
-    }, [fetchData]);
+    }, [searchText, fetchData]);
 
     const sendSelectedProducts = async () => {
         try {
@@ -81,7 +82,7 @@ const Products = () => {
         selectedRowKeys,
         onChange: onSelectChange,
         getCheckboxProps: (record) => ({
-            disabled: false,
+            disabled: record.selected_by_user,
         }),
     };
 

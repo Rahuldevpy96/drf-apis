@@ -611,3 +611,22 @@ DASHBOARD
     font-size: 4vw;
   }
 }
+
+.email-profile {
+  font-weight: 500;
+  color: white;
+  font-size: 14px;
+  margin-left: auto; 
+  margin-right: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .email-profile {
+    font-size: 10px; 
+    margin-left: 0; 
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
